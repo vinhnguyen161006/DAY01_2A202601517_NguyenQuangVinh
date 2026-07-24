@@ -185,26 +185,28 @@ def chat_with_system_prompt(
     """
     from openai import OpenAI
 
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 
     messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt},
+        {"role" : "system", "content" : system_prompt},
+        {"role" : "user", "content" : user_prompt},
     ]
 
     start = time.perf_counter()
     response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,
-        max_tokens=max_tokens,
+        model = model,
+        messages = messages,
+        temperature = temperature,
+        max_tokens = max_tokens,
     )
+
     end = time.perf_counter()
 
-    response_text = response.choices[0].message.content
+    response_text = response.choice[0].message.content
     latency_seconds = end - start
-
     return response_text, latency_seconds
+
+
 
 
 # ---------------------------------------------------------------------------
